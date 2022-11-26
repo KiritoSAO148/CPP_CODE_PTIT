@@ -35,18 +35,40 @@ void FileIO(){
     #endif
 }
 
+struct point{
+	int x, y, z;
+};
+
+point mul (point a, point b){
+	point res;
+	res.x = a.y * b.z - a.z * b.y;
+	res.y = a.z * b.x - a.x * b.z;
+	res.z = a.x * b.y - a.y * b.x;
+	return res;
+}
+
+bool check (point a, point b, point c, point d){
+	point ab;
+	ab.x = b.x - a.x, ab.y = b.y - a.y, ab.z = b.z - a.z;
+	point ac;
+	ac.x = c.x - a.x, ac.y = c.y - a.y, ac.z = c.z - a.z;
+	point ad;
+	ad.x = d.x - a.x, ad.y = d.y - a.y, ad.z = d.z - a.z;
+	point res = mul(ab, ac);
+	return (ad.x * res.x + ad.y * res.y + ad.z * res.z) == 0;
+}
+
 int main(){
     FileIO();
     FastIO;
     TC(){
-    	string s; cin >> s;
-    	int ans = 0;
-    	while (s.find("100") != string::npos){
-    		auto it = s.find("100");
-    		s.erase(s.begin() + it, s.begin() + it + 3);
-    		ans += 3;
-    	}
-    	if (ans) cout << ans << '\n';
+    	point a, b, c, d;
+    	cin >> a.x >> a.y >> a.z;
+    	cin >> b.x >> b.y >> b.z;
+    	cin >> c.x >> c.y >> c.z;
+    	cin >> d.x >> d.y >> d.z;
+    	if (check(a, b, c, d)) cout << "YES\n";
+    	else cout << "NO\n";
     }
     return 0;
 }
