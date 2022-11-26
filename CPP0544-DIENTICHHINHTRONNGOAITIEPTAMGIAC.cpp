@@ -25,6 +25,7 @@ typedef vector<vl> vvl;
 #define fi first
 #define se second
 #define maxn 
+#define PI 3.141592653589793238
 
 const int MOD = (int) 1e9+7;
 
@@ -58,7 +59,9 @@ int main(){
     	x.a = dis(x1, y1, x2, y2); x.b = dis(x1, y1, x3, y3); x.c = dis(x2, y2, x3, y3);
     	if (!isValid(x)) cout << "INVALID\n";
     	else{
-    		
+    		double S = 0.25 * sqrt((x.a + x.b + x.c) * (x.a + x.b - x.c) * (x.a + x.c - x.b) * (x.b + x.c - x.a));
+            double R = (x.a * x.b * x.c) / (4 * S);
+            cout << fixed << setprecision(3) << PI * R * R; el;
     	}
     }
     return 0;
