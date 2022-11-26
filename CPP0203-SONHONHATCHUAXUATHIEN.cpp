@@ -32,8 +32,9 @@ int main(){
 		int n; cin >> n;
 		vi a(n);
 		int ans=1;
+		f0 (i,n) cin >> a[i];
+		sort(a.begin(), a.end());
 		f0 (i,n){
-			cin >> a[i];
 			if (a[i]<=0) a[i]=0;
 			if (a[i]==ans) ++ans;
 		}
