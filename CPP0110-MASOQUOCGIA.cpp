@@ -1,55 +1,55 @@
-#include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 
-long long tachso(long long n){
-	long long a=0;
-	long long c=n;
-	int check=0;
-	while (n>0){
-		int b=n%10;
-		if(b==4 && check ==0){
-			c/=10;
-			if (c%10==8){
-				c/=10;
-				if(c%10==0){
-					check++;
-					c/=10;
-				}
-			}
-		}
-		if(check==1){
-			check++;
-			n=c;
-			b=n%10;
-			a=a*10+b;
-			n/=10;
-			c/=10;
-		}else{
-			a=a*10+b;
-			c=n;
-			n/=10;
-			c/=10;
-		}
-	}
-	return a;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef vector<pii> vii;
+typedef vector<pll> vll;
+typedef vector<ll> vl;
+typedef vector<vl> vvl;
+
+#define ms(s,n) memset(s,n,sizeof(s))
+#define all(a) a.begin(),a.end()
+#define sz(a) int((a).size())
+#define f0(i,n) for (int i=0; i<n; i++)
+#define f1(i,n) for (int i=1; i<=n; i++)
+#define FastIO ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define TC() int t; cin >> t; while (t--)
+#define el cout << "\n"
+#define pb push_back
+#define pf push_front
+#define fi first
+#define se second
+#define maxn 
+
+const int MOD = (int) 1e9+7;
+
+void FileIO(){
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
 }
 
-void inso (long long n){
-	while (n>0){
-		int b=n%10;
-		cout << b;
-		n/=10;
-	}
+string solve (string s){
+    auto it = s.find("084");
+    while (it != string::npos){
+        s.erase(it, 3);
+        it = s.find("084");
+    }
+    return s;
 }
 
 int main(){
-	int t;
-	cin >> t;
-	while (t--){
-		long long n;
-		cin >> n;
-		long long a=tachso(n);
-		inso(a);
-		cout << endl;
-	}
+    FileIO();
+    FastIO;
+    TC(){
+        string s; cin >> s;
+        cout << solve(s); el;
+    }
+    return 0;
 }

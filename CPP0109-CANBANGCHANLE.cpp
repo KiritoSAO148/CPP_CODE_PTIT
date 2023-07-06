@@ -1,32 +1,70 @@
-#include <iostream>
-#include <cmath>
+#include <bits/stdc++.h>
 using namespace std;
 
-int ChanLe (int n){
-	int check=0;
-	while (n>0){
-		int i=n%10;
-		if (i%2==0){ check++;
-	}else check--;
-	n/=10;}
-	if (check==0) return 0;
-	return 1;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef vector<pii> vii;
+typedef vector<pll> vll;
+typedef vector<ll> vl;
+typedef vector<vl> vvl;
+
+#define ms(s,n) memset(s,n,sizeof(s))
+#define all(a) a.begin(),a.end()
+#define sz(a) int((a).size())
+#define f0(i,n) for (int i=0; i<n; i++)
+#define f1(i,n) for (int i=1; i<=n; i++)
+#define FastIO ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define TC() int t; cin >> t; while (t--)
+#define el cout << "\n"
+#define pb push_back
+#define pf push_front
+#define fi first
+#define se second
+#define maxn 
+
+const int MOD = (int) 1e9+7;
+
+void FileIO(){
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
 }
 
+bool check(int n){
+    int even = 0, odd = 0;
+    while (n){
+        if ((n % 10) % 2 == 0) ++even;
+        else ++odd;
+        n /= 10;
+    }
+    return even == odd;
+}
+
+void solve(int n){
+    if (n % 2) return;
+    vi v;
+    for (int i = pow(10, n - 1); i < pow(10, n); ++i){
+        if (check(i)) v.pb(i);
+    }
+    int cnt = 0;
+    for (int i = 0; i < sz(v); ++i){
+        cout << v[i] << ' ';
+        ++cnt;
+        if (cnt == 10){
+            cnt = 0; el;
+        }
+    }
+}
 
 int main(){
-	int n;
-	int dem=0;
-	cin >> n;
-	for (int i=pow(10,n-1); i<pow(10,n); i++){
-		if (ChanLe(i)==0){
-			cout << i << " ";
-			dem++;
-		}
-		if (dem==10){
-			cout << endl;
-			dem=0;
-		}
-	}
-	return 0;
+    FileIO();
+    FastIO;
+    int n; cin >> n;
+    solve(n);
+    return 0;
 }
