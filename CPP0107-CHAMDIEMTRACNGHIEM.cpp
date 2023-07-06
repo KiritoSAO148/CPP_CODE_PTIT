@@ -33,19 +33,19 @@ int main(){
 	int t; cin >> t;
 	while (t--){
 		int n; cin >> n;
-		double s=0;
-		string res="";
+		double s = 0;
+		string res = "";
 		f0 (i,15){
 			char x; cin >> x;
-			res+=x;
+			res += x;
 		}
-		if (n==101){
-			f0 (i,sz(res)){
-				if (res[i]==s1[i]) s+=10.0/15;
+		if (n == 101){
+			f0 (i, sz(res)){
+				if (res[i] == s1[i]) s += 10.0 / 15;
 			}
 		}else{
-			f0 (i,sz(res)){
-				if (res[i]==s2[i]) s+=10.0/15;
+			f0 (i, sz(res)){
+				if (res[i] == s2[i]) s += 10.0 / 15;
 			}
 		}
 		cout << fixed << setprecision(2) << s << "\n";
