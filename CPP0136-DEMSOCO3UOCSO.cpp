@@ -43,8 +43,8 @@ int main(){
 	sang();
 	while (t--){
 		ll n; cin >> n;
-		int cnt=0;
-		for (int i=2; i<=sqrt(n); i++){
+		int cnt = 0;
+		for (int i = 2; i <= sqrt(n); ++i){
 			if (prime[i]) ++cnt;
 		}
 		cout << cnt << "\n";
