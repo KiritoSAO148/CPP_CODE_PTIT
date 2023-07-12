@@ -35,19 +35,21 @@ void FileIO(){
     #endif
 }
 
-int legendre (int n, int p){
-    int ans=0;
-    for (int i=p; i<=n; i*=p)
-        ans+=n/i;
+int legendre(int n, int p){
+    int ans = 0;
+    for (int i = p; i <= n; i *= p) ans += n / i;
     return ans;
 }
 
 int main(){
-    FileIO();
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
     FastIO;
     TC(){
-    	int n, p; cin >> n >> p;
-    	cout << legendre(n, p); el;
+        int n, p; cin >> n >> p;
+        cout << legendre(n, p); el;
     }
     return 0;
 }
