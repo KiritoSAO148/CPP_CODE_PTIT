@@ -52,9 +52,9 @@ int main(){
     FileIO();
     FastIO;
     TC(){
-    	int m, n; cin >> m >> n;
-    	sang(m, n);
-    	el;
+        int a, b; cin >> a >> b;
+        if (a > b) swap(a, b);
+        sang(a, b); el;
     }
     return 0;
 }
