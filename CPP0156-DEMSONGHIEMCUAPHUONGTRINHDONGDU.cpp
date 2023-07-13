@@ -35,15 +35,24 @@ void FileIO(){
     #endif
 }
 
+ll solve(int n, int p){
+    ll ans = 0;
+    for (int x = 1; x < p; ++x){
+        if ((1ll * x * x) % p == 1){
+            ll last = x + p * (n/p);
+            if (last > n) last -= p;
+            ans += ((last-x)/p + 1);
+        }
+    }
+    return ans;
+}
+
 int main(){
     FileIO();
     FastIO;
     TC(){
-        int n; cin >> n;
-        ll k; cin >> k;
-        int sum = 0;
-        f1 (i, n) sum += i % k;
-        cout << sum; el;
+        int n, p; cin >> n >> p;
+        cout << solve(n, p); el;
     }
     return 0;
 }

@@ -24,30 +24,30 @@ const int MOD = (int) 1e9+7;
 ll f[93];
 
 void fibo(){
-	f[0]=0; f[1]=1;
-	for (int i=2; i<=92; i++){
-		f[i]=f[i-1]+f[i-2];
-	}
+    f[0] = 0; f[1] = 1;
+    for (int i = 2; i <= 92; ++i){
+        f[i] = f[i - 1] + f[i - 2];
+    }
 }
 
 string check (ll n){
-	f0 (i,93){
-		if (f[i]==n) return "YES\n";
-	}
-	return "NO\n";
+    f0 (i, 93){
+        if (f[i] == n) return "YES\n";
+    }
+    return "NO\n";
 }
 
 int main(){
-	#ifndef ONLINE_JUDGE
-  	freopen("input.txt", "r", stdin);
-  	freopen("output.txt", "w", stdout);
-  	#endif
-	FastIO;
-	fibo();
-	int t; cin >> t;
-	while (t--){
-		ll n; cin >> n;
-		cout << check(n);
-	}
-	return 0;
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+    FastIO;
+    fibo();
+    int t; cin >> t;
+    while (t--){
+        ll n; cin >> n;
+        cout << check(n);
+    }
+    return 0;
 }

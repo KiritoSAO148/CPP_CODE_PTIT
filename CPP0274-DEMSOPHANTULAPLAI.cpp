@@ -21,7 +21,7 @@ typedef vector<pi> vii;
 
 const int MOD = (int) 1e9+7;
 
-int n,cnt[maxn],ma=-1e9,mi=1e9;
+int n, cnt[maxn], ma = -1e9, mi = 1e9;
 
 int main(){
 	#ifndef ONLINE_JUDGE
@@ -32,16 +32,16 @@ int main(){
 	int t; cin >> t;
 	while (t--){
 		cin >> n;
-		ms(cnt,0);
-		f1 (i,n){
+		ms(cnt, 0);
+		f1 (i, n){
 			int x; cin >> x;
-			ma=max(ma,x);
-			mi=min(mi,x);
+			ma = max(ma, x);
+			mi = min(mi, x);
 			cnt[x]++;
 		}
-		int ans=0;
-		for (int i=mi; i<=ma; i++){
-			if (cnt[i]>1) ans+=cnt[i];
+		int ans = 0;
+		for (int i = mi; i <= ma; i++){
+			if (cnt[i] > 1) ans += cnt[i];
 		}
 		cout << ans << "\n";
 	}
