@@ -35,23 +35,33 @@ void FileIO(){
     #endif
 }
 
-ll tonguoc (ll n){
-    ll s=0;
-    for (int i=1; i<=sqrt(n); i++){
-        if (n%i==0){
-            s+=i;
-            if (i!=n/i) s+=n/i;
-        }
-    }
-    return s;
-}
+int dx[8]={-1,-1,-1,0,1,1,1,0};
+int dy[8]={-1,0,1,1,1,0,-1,-1};
 
 int main(){
     FileIO();
     FastIO;
-    TC(){
-    	ll n; cin >> n;
-    	cout << tonguoc(n); el;
+    int m, n; cin >> m >> n;
+    int a[501][501];
+    bool used[501][501];
+    ms(used, true);
+    f1 (i, m) f1 (j, n) cin >> a[i][j];
+    int sum = 0;
+    f1 (i, m){
+    	f1 (j, n){
+    		if (a[i][j] == -1){
+    			f0 (k, 8){
+    				int i1 = i + dx[k];
+    				int j1 = j + dy[k];
+    				if (i1 >= 1 && i1 <= m && j1 >= 1 && j1 <= n && used[i1][j1] && a[i1][j1] != 0){
+    					used[i1][j1] = false;
+    					sum += a[i1][j1];
+    				}
+    			}
+    		}
+    	}
     }
+    if (sum < 0) cout << 0;
+    else cout << sum;
     return 0;
 }

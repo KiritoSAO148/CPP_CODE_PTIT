@@ -35,23 +35,31 @@ void FileIO(){
     #endif
 }
 
-ll tonguoc (ll n){
-    ll s=0;
-    for (int i=1; i<=sqrt(n); i++){
-        if (n%i==0){
-            s+=i;
-            if (i!=n/i) s+=n/i;
-        }
-    }
-    return s;
-}
-
 int main(){
     FileIO();
     FastIO;
     TC(){
-    	ll n; cin >> n;
-    	cout << tonguoc(n); el;
+    	int n, m; cin >> n >> m;
+    	vi a(n);
+    	f0 (i, n) cin >> a[i];
+    	int max_val = *max_element(all(a));
+    	vi res;
+    	int ok = 0;
+    	f0 (i, n){
+    		if (a[i] == max_val && !ok) {
+    			res.pb(m);
+    			ok = 1;
+    		}
+    		res.pb(a[i]);
+    	}
+    	vi pos, neg;
+    	f0 (i, sz(res)){
+    		if (res[i] >= 0) pos.pb(res[i]);
+    		else neg.pb(res[i]);
+    	}
+    	f0 (i, sz(neg)) cout << neg[i] << ' ';
+    	f0 (i, sz(pos)) cout << pos[i] << ' ';
+    	el;
     }
     return 0;
 }

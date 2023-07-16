@@ -35,23 +35,33 @@ void FileIO(){
     #endif
 }
 
-ll tonguoc (ll n){
-    ll s=0;
-    for (int i=1; i<=sqrt(n); i++){
-        if (n%i==0){
-            s+=i;
-            if (i!=n/i) s+=n/i;
-        }
-    }
-    return s;
+int sum(int n){
+	int s = 0;
+	while (n){
+		s += n % 10;
+		n /= 10;
+	}
+	return s;
+}
+
+bool smith(int n){
+	int m = n;
+	int sum1 = sum(m), sum2 = 0;
+	for (int i = 2; i <= sqrt(n); ++i){
+		while (n % i == 0){
+			sum2 += sum(i);
+			n /= i;
+		}
+	}
+	if (n > 1) sum2 += sum(n);
+	return sum1 == sum2;
 }
 
 int main(){
     FileIO();
     FastIO;
-    TC(){
-    	ll n; cin >> n;
-    	cout << tonguoc(n); el;
-    }
+    int n; cin >> n;
+    if (smith(n)) cout << "YES";
+    else cout << "NO";
     return 0;
 }

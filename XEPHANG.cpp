@@ -35,23 +35,22 @@ void FileIO(){
     #endif
 }
 
-ll tonguoc (ll n){
-    ll s=0;
-    for (int i=1; i<=sqrt(n); i++){
-        if (n%i==0){
-            s+=i;
-            if (i!=n/i) s+=n/i;
-        }
-    }
-    return s;
+bool cmp(pii a, pii b){
+	return a.fi < b.fi;
 }
 
 int main(){
     FileIO();
     FastIO;
-    TC(){
-    	ll n; cin >> n;
-    	cout << tonguoc(n); el;
+    int n; cin >> n;
+    vii a(n);
+    f0 (i, n) cin >> a[i].fi >> a[i].se;
+    sort(all(a), cmp);
+    int ans = 0;
+    f0 (i, n){
+    	ans = max(ans, a[i].fi);
+    	ans += a[i].se;
     }
+    cout << ans;
     return 0;
 }

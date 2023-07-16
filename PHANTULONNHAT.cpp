@@ -35,23 +35,16 @@ void FileIO(){
     #endif
 }
 
-ll tonguoc (ll n){
-    ll s=0;
-    for (int i=1; i<=sqrt(n); i++){
-        if (n%i==0){
-            s+=i;
-            if (i!=n/i) s+=n/i;
-        }
-    }
-    return s;
-}
-
 int main(){
     FileIO();
     FastIO;
     TC(){
-    	ll n; cin >> n;
-    	cout << tonguoc(n); el;
+    	int n, k; cin >> n >> k;
+    	vi a(n);
+    	f0 (i, n) cin >> a[i];
+    	sort(all(a), greater<int>());
+    	f0 (i, k) cout << a[i] << ' ';
+    	el;
     }
     return 0;
 }

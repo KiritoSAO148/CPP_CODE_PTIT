@@ -35,23 +35,28 @@ void FileIO(){
     #endif
 }
 
-ll tonguoc (ll n){
-    ll s=0;
-    for (int i=1; i<=sqrt(n); i++){
-        if (n%i==0){
-            s+=i;
-            if (i!=n/i) s+=n/i;
-        }
-    }
-    return s;
+ll f[93];
+
+void fibo(){
+    f[0]=0; f[1]=1;
+    for (int i=2; i<=92; i++) f[i]=f[i-1]+f[i-2];
+}
+
+bool check(ll n){
+	f0 (i, 93){
+		if (n == f[i]) return true;
+	}
+	return false;
 }
 
 int main(){
     FileIO();
     FastIO;
+    fibo();
     TC(){
     	ll n; cin >> n;
-    	cout << tonguoc(n); el;
+    	if (check(n)) cout << "YES\n";
+    	else cout << "NO\n";
     }
     return 0;
 }
