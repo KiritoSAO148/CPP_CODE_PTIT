@@ -42,14 +42,32 @@ int main(){
         int n; cin >> n;
         int a[n][n];
         f0 (i, n) f0 (j, n) cin >> a[i][j];
+        int sumRow[n], sumCol[n];
+        ms(sumRow, 0);
+        ms(sumCol, 0);
         f0 (i, n){
-            if (i % 2 == 0){
-                f0 (j, n) cout << a[i][j] << ' ';
-            }else{
-                for (int j = n - 1; j >= 0; --j) cout << a[i][j] << ' ';
+            f0 (j, n){
+                sumRow[i] += a[i][j];
+                sumCol[j] += a[i][j];
             }
         }
-        el;
+        // f0 (i, n) cout << sumRow[i] << ' ' << sumCol[i] << '\n';
+        int maxSum = 0;
+        f0 (i, n) {
+            maxSum = max(maxSum, sumRow[i]);
+            maxSum = max(maxSum, sumCol[i]);
+        }
+        int cnt = 0;
+        for (int i = 0, j = 0; i < n && j < n; ){
+            int diff = min(maxSum - sumRow[i], maxSum - sumCol[j]);
+            a[i][j] += diff;
+            sumRow[i] += diff;
+            sumCol[j] += diff;
+            cnt += diff;
+            if (sumRow[i] == maxSum) ++i;
+            if (sumCol[j] == maxSum) ++j;
+        }
+        cout << cnt; el;
     }
     return 0;
 }

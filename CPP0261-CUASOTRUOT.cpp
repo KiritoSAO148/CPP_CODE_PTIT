@@ -38,17 +38,21 @@ void FileIO(){
 int main(){
     FileIO();
     FastIO;
-    TC(){
-        int n; cin >> n;
-        int a[n][n];
-        f0 (i, n) f0 (j, n) cin >> a[i][j];
-        f0 (i, n){
-            if (i % 2 == 0){
-                f0 (j, n) cout << a[i][j] << ' ';
-            }else{
-                for (int j = n - 1; j >= 0; --j) cout << a[i][j] << ' ';
+    int n; cin >> n;
+    int a[n][n];
+    f0 (i, n) f0 (j, n) cin >> a[i][j];
+    int m; cin >> m;
+    int b[m][m];
+    f0 (i, m) f0 (j, m) cin >> b[i][j];
+    for (int i = 0; i < n; i += m){
+        for (int j = 0; j < n; j += m){
+            f0 (k, m){
+                f0 (l, m) a[i + k][j + l] *= b[k][l];
             }
         }
+    }
+    f0 (i, n){
+        f0 (j, n) cout << a[i][j] << ' ';
         el;
     }
     return 0;

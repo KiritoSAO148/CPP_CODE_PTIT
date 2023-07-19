@@ -39,17 +39,19 @@ int main(){
     FileIO();
     FastIO;
     TC(){
-        int n; cin >> n;
-        int a[n][n];
-        f0 (i, n) f0 (j, n) cin >> a[i][j];
-        f0 (i, n){
-            if (i % 2 == 0){
-                f0 (j, n) cout << a[i][j] << ' ';
-            }else{
-                for (int j = n - 1; j >= 0; --j) cout << a[i][j] << ' ';
+        int n, m, l; cin >> n >> m >> l;
+        ll s = 0;
+        vector<vector<int>>a(n + 1, vector<int>(m + 1, 0));
+        f1 (i, n){
+            f1 (j, m){
+                cin >> a[i][j];
+                a[i][j] += a[i - 1][j] + a[i][j - 1] - a[i - 1][j - 1];
             }
         }
-        el;
+        f1 (i, n - l + 1){
+            f1 (j, m - l + 1) cout << (a[i + l - 1][j + l - 1] - a[i - 1][j + l - 1] - a[i + l - 1][j - 1] + a[i - 1][j - 1]) / (l * l) << ' ';
+            el;
+        }
     }
     return 0;
 }

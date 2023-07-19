@@ -39,17 +39,28 @@ int main(){
     FileIO();
     FastIO;
     TC(){
-        int n; cin >> n;
-        int a[n][n];
-        f0 (i, n) f0 (j, n) cin >> a[i][j];
-        f0 (i, n){
-            if (i % 2 == 0){
-                f0 (j, n) cout << a[i][j] << ' ';
-            }else{
-                for (int j = n - 1; j >= 0; --j) cout << a[i][j] << ' ';
+        int n, m; cin >> n >> m;
+        int a[n][m];
+        f0 (i, n) f0 (j, m) cin >> a[i][j];
+        int kernel[3][3];
+        f0 (i, 3) f0 (j, 3) cin >> kernel[i][j];
+        vi v;
+        f0 (i, n - 2){
+            f0 (j, m - 2){
+                int res = 0;
+                f0 (k, 3){
+                    f0 (l, 3) res += a[i + k][j + l] * kernel[k][l];
+                }
+                v.pb(res);
             }
         }
-        el;
+        // f0 (i, sz(v)){
+        //     cout << v[i] << ' ';
+        //     if (i % (m - 2) == 1) el;
+        // }
+        ll ans = 0;
+        for (int x : v) ans += x;
+        cout << ans; el;
     }
     return 0;
 }

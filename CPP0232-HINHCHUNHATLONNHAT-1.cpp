@@ -42,24 +42,35 @@ int main(){
         int n, m; cin >> n >> m;
         int a[n][m];
         f0 (i, n) f0 (j, m) cin >> a[i][j];
-        int h1 = 0, h2 = n - 1, c1 = 0, c2 = m - 1;
-        vi v;
-        while (1){
-            if (c1 > c2) break;
-            for (int i = c1; i <= c2; ++i) v.pb(a[h1][i]);
-            ++h1;
-            if (h1 > h2) break;
-            for (int i = h1; i <= h2; ++i) v.pb(a[i][c2]);
-            --c2;
-            if (c1 > c2) break;
-            for (int i = c2; i >= c1; --i) v.pb(a[h2][i]);
-            --h2;
-            if (h1 > h2) break;
-            for (int i = h2; i >= h1; --i) v.pb(a[i][c1]);
-            ++c1;
+        int hist[n + 1][m + 1];
+        f0 (i, m) {
+            hist[0][i] = a[0][i];
+            for (int j = 1; j < n; ++j) {
+                if (a[j][i] == 0) hist[j][i] = 0;
+                else hist[j][i] = hist[j - 1][i] + 1;
+            }
         }
-        for (int i = sz(v) - 1; i >= 0; --i) cout << v[i] << ' ';
-        el;
+        for (int i = 0; i < n; ++i){
+            int cnt[n + 1] = {0};
+            for (int j = 0; j < m; ++j) cnt[hist[i][j]]++;
+            int col = 0;
+            for (int j = n; j >= 0; --j){
+                if (cnt[j] > 0){
+                    for (int k = 0; k < cnt[j]; ++k){
+                        hist[i][col] = j;
+                        ++col;
+                    }
+                }
+            }
+        }
+        int curr_area, max_area = INT_MIN;
+        for (int i = 0; i < n; ++i){
+            for (int j = 0; j < m; ++j){
+                curr_area = (j + 1) * hist[i][j];
+                max_area = max(max_area, curr_area);
+            }
+        }
+        cout << max_area; el;
     }
     return 0;
 }

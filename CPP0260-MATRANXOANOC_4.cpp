@@ -38,17 +38,33 @@ void FileIO(){
 int main(){
     FileIO();
     FastIO;
-    TC(){
-        int n; cin >> n;
-        int a[n][n];
-        f0 (i, n) f0 (j, n) cin >> a[i][j];
-        f0 (i, n){
-            if (i % 2 == 0){
-                f0 (j, n) cout << a[i][j] << ' ';
-            }else{
-                for (int j = n - 1; j >= 0; --j) cout << a[i][j] << ' ';
-            }
+    int n; cin >> n;
+    vi a;
+    f0 (i, n){
+        f0 (j, n){
+            int x; cin >> x;
+            a.pb(x);
         }
+    }
+    sort(all(a));
+    int mat[n][n];
+    int idx = 0, h1 = 0, h2 = n - 1, c1 = 0, c2 = n - 1;
+    while (1){
+        if (c1 > c2) break;
+        for (int i = c1; i <= c2; ++i) mat[h1][i] = a[idx++];
+        ++h1;
+        if (h1 > h2) break;
+        for (int i = h1; i <= h2; ++i) mat[i][c2] = a[idx++];
+        --c2;
+        if (c1 > c2) break;
+        for (int i = c2; i >= c1; --i) mat[h2][i] = a[idx++];
+        --h2;
+        if (h1 > h2) break;
+        for (int i = h2; i >= h1; --i) mat[i][c1] = a[idx++];
+        ++c1;
+    }
+    f0 (i, n) {
+        f0 (j, n) cout << mat[i][j] << ' ';
         el;
     }
     return 0;
