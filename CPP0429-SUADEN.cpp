@@ -35,21 +35,21 @@ void FileIO(){
     #endif
 }
 
-int n, x, a[100001];
-
-bool cmp(int a, int b){
-    return abs(a - x) < abs(b - x);
-}
-
 int main(){
     FileIO();
     FastIO;
-    TC(){
-        cin >> n >> x;
-        f0 (i, n) cin >> a[i];
-        stable_sort(a, a + n, cmp);
-        f0 (i, n) cout << a[i] << ' ';
-        el;
+    int n, k, b; cin >> n >> k >> b;
+    int a[b];
+    vi v(n + 1, 1);
+    for (int i = 0; i < b; ++i) cin >> a[i], v[a[i]] = 0;
+    int ans = INT_MAX, tmp = 0;
+    for (int i = 1; i <= k; ++i) tmp += v[i];
+    ans = min(ans, k - tmp);
+    for (int i = k + 1; i <= n; ++i){
+        tmp += v[i];
+        tmp -= v[i - k];
+        ans = min(ans, k - tmp);
     }
+    cout << ans;
     return 0;
 }

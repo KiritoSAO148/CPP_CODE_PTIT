@@ -35,20 +35,32 @@ void FileIO(){
     #endif
 }
 
-int n, x, a[100001];
-
-bool cmp(int a, int b){
-    return abs(a - x) < abs(b - x);
-}
-
 int main(){
     FileIO();
     FastIO;
     TC(){
-        cin >> n >> x;
+        int n, m; cin >> n >> m;
+        vi a(n), b(m);
         f0 (i, n) cin >> a[i];
-        stable_sort(a, a + n, cmp);
-        f0 (i, n) cout << a[i] << ' ';
+        f0 (i, m) cin >> b[i];
+        sort(all(a));
+        sort(all(b));
+        vi hop, giao;
+        int i = 0, j = 0;
+        while (i < n && j < m){
+            if (a[i] == b[j]){
+                hop.pb(a[i]);
+                giao.pb(a[i]);
+                ++i; ++j;
+            }
+            else if (a[i] < b[j]) hop.pb(a[i++]);
+            else hop.pb(b[j++]);
+        }
+        while (i < n) hop.pb(a[i++]);
+        while (j < m) hop.pb(b[j++]);
+        for (int x : hop) cout << x << ' ';
+        el;
+        for (int x : giao) cout << x << ' ';
         el;
     }
     return 0;
