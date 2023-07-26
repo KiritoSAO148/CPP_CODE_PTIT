@@ -35,21 +35,45 @@ void FileIO(){
     #endif
 }
 
+
+int findSubString(string s){
+    int n = sz(s);
+    if (n <= 1) return 1;
+    int dist_count = 0;
+    int visited[256] = {0};
+    f0 (i, n) {
+        if (!visited[s[i]]) {
+            visited[s[i]] = 1;
+            ++dist_count;
+        }
+    }
+    int start = 0, start_index = -1, min_len = INT_MAX;
+    int count = 0;
+    int curr_count[256] = {0};
+    f0 (i, n) {
+        curr_count[s[i]]++;
+        if (curr_count[s[i]] == 1) ++count;
+        if (count == dist_count) {
+            while (curr_count[s[start]] > 1) {
+                if (curr_count[s[start]] > 1) curr_count[s[start]]--;
+                ++start;
+            }
+            int len_window = i - start + 1;
+            if (min_len > len_window) {
+                min_len = len_window;
+                start_index = start;
+            }
+        }
+    }
+    return sz(s.substr(start_index, min_len));
+}
+
 int main(){
     FileIO();
     FastIO;
     TC(){
         string s; cin >> s;
-        int sum = 0, currSum = 0;
-        f0 (i, sz(s)){
-            if (isdigit(s[i])) currSum = currSum * 10 + (s[i] - '0');
-            else{
-                sum = max(sum, currSum);
-                currSum = 0;
-            }
-        }
-        if (currSum) sum = max(sum, currSum);
-        cout << sum; el;
+        cout << findSubString(s); el;
     }
     return 0;
 }
