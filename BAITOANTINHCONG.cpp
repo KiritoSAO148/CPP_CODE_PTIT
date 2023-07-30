@@ -38,19 +38,22 @@ void FileIO(){
 int main(){
     FileIO();
     FastIO;
-    int n; cin >> n;
-    vi a(n);
-    f0 (i, n) cin >> a[i];
-    vi ans;
-    for (int i = 1; i < a[0]; ++i) ans.pb(i);
-    for (int i = 0; i < n - 1; ++i){
-    	if (a[i] != a[i + 1] && a[i] != a[i + 1] - 1){
-    		for (int j = a[i] + 1; j < a[i + 1]; ++j) ans.pb(j);
-    	}
-    }
-    if (sz(ans) == 0) cout << "Excellent!";
-    else{
-    	f0 (i, sz(ans)) cout << ans[i] << '\n';
-    }
+    string mnv = "NV01";
+    string name; getline(cin, name);
+    int luongcb; cin >> luongcb;
+    int songaycong; cin >> songaycong;
+    string chucvu; cin >> chucvu;
+    int tienluong = luongcb * songaycong;
+    int tienthuong = 0;
+    if (songaycong >= 25) tienthuong = tienluong * 0.2;
+    else if (songaycong >= 22) tienthuong = tienluong * 0.1;
+    else tienthuong = 0;
+    int phucap = 0;
+    if (chucvu == "GD") phucap = 250000;
+    else if (chucvu == "PGD") phucap = 200000;
+    else if (chucvu == "TP") phucap = 180000;
+    else phucap = 150000;
+    cout << mnv << ' ' << name << ' ' << tienluong << ' ' << tienthuong << ' ' << phucap
+    << ' ' << tienluong + tienthuong + phucap;
     return 0;
 }

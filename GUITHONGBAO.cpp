@@ -38,19 +38,27 @@ void FileIO(){
 int main(){
     FileIO();
     FastIO;
-    int n; cin >> n;
-    vi a(n);
-    f0 (i, n) cin >> a[i];
-    vi ans;
-    for (int i = 1; i < a[0]; ++i) ans.pb(i);
-    for (int i = 0; i < n - 1; ++i){
-    	if (a[i] != a[i + 1] && a[i] != a[i + 1] - 1){
-    		for (int j = a[i] + 1; j < a[i + 1]; ++j) ans.pb(j);
+    int t; cin >> t;
+    cin.ignore();
+    while (t--){
+    	string s; getline(cin, s);
+    	string ans = "";
+    	int idx = 0, cnt = 0;
+    	f0 (i, sz(s)){
+    		if (cnt == 100){
+    			idx = i;
+    			break;
+    		}
+    		++cnt;
     	}
-    }
-    if (sz(ans) == 0) cout << "Excellent!";
-    else{
-    	f0 (i, sz(ans)) cout << ans[i] << '\n';
+    	if (sz(s) <= 100) cout << s;
+    	else{
+    		if (s[idx] != ' '){
+    			while (s[idx] != ' ') --idx;
+    		}
+    		f0 (i, idx) cout << s[i];
+    	}
+    	el;
     }
     return 0;
 }

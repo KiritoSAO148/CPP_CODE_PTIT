@@ -29,28 +29,25 @@ typedef vector<vl> vvl;
 const int MOD = (int) 1e9+7;
 
 void FileIO(){
-    #ifndef ONLINE_JUDGE
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    #endif
+    // #ifndef ONLINE_JUDGE
+    freopen("CONTACT.in", "r", stdin);
+    // freopen("output.txt", "w", stdout);
+    // #endif
+}
+
+void vietThuong(string &s){
+	f0 (i, sz(s)) s[i] = tolower(s[i]);
 }
 
 int main(){
     FileIO();
     FastIO;
-    int n; cin >> n;
-    vi a(n);
-    f0 (i, n) cin >> a[i];
-    vi ans;
-    for (int i = 1; i < a[0]; ++i) ans.pb(i);
-    for (int i = 0; i < n - 1; ++i){
-    	if (a[i] != a[i + 1] && a[i] != a[i + 1] - 1){
-    		for (int j = a[i] + 1; j < a[i + 1]; ++j) ans.pb(j);
-    	}
-    }
-    if (sz(ans) == 0) cout << "Excellent!";
-    else{
-    	f0 (i, sz(ans)) cout << ans[i] << '\n';
-    }
+    string s;
+    vector <string> emails;
+    while (getline(cin, s)) emails.pb(s);
+    f0 (i, sz(emails)) vietThuong(emails[i]);
+    set <string> se;
+    f0 (i, sz(emails)) se.insert(emails[i]);
+    for (string x : se) cout << x << '\n';
     return 0;
 }

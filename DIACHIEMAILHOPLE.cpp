@@ -37,7 +37,7 @@ void FileIO(){
 
 bool check(string s){
 	int cnt = 0;
-	f0 (i, sz(s)) {
+	f0 (i, sz(s)){
 		char c = s[i];
 		cnt += c == '@';
 		if (c == ' ') return false;
@@ -50,8 +50,8 @@ bool check(string s){
 bool isValid(string s){
 	if (!check(s)) return false;
 	int it = s.find('@');
-    string username = s.substr(0, it), domain = s.substr(it + 1);
-    if (sz(username) == 0) return false;
+	string username = s.substr(0, it), domain = s.substr(it + 1);
+	if (sz(username) == 0) return false;
 	if (sz(username) > 64 || sz(domain) > 254) return false;
 	it = domain.find('.');
 	if (it == string::npos) return false;
@@ -69,7 +69,7 @@ int main(){
     FastIO;
     int t; cin >> t;
     cin.ignore();
-    while (t--){
+    while (t--) {
     	string s; getline(cin, s);
     	if (isValid(s)) cout << "YES\n";
     	else cout << "NO\n";
