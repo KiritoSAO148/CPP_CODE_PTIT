@@ -35,25 +35,23 @@ void FileIO(){
     #endif
 }
 
-int solve(string s, int n){
-    int res = 0;
-    f0 (i, sz(s)){
-        int sum = 0;
-        for (int j = i; j < sz(s); ++j){
-            sum = sum * 10 + s[j] - '0';
-            sum %= n;
-            if (sum == 0) ++res;
-        }
-    }
-    return res;
-}
-
 int main(){
     FileIO();
     FastIO;
     TC(){
+        int M, N; cin >> M >> N;
         string s; cin >> s;
-        cout << solve(s, 8) - solve(s, 24); el;
+        ll dp[M][N];
+        ms(dp, 0);
+        dp[0][(s[0] - '0') % N]++;
+        for (int i = 1; i < M; ++i){
+            dp[i][(s[i] - '0') % N]++;
+            for (int j = 0; j < N; ++j){
+                dp[i][j] += dp[i - 1][j];
+                dp[i][(j * 10 + (s[i] - '0')) % N] += dp[i - 1][j];
+            }
+        }
+        cout << dp[M - 1][0]; el;
     }
     return 0;
 }
