@@ -35,23 +35,44 @@ void FileIO(){
     #endif
 }
 
+string multiply(string a, string b){
+    int n = sz(a);
+    int m = sz(b);
+    int len = n + m - 1;
+    int nho = 0;
+    string ans = "";
+    for (int i = len; i >= 0; --i){
+        int res = 0;
+        for (int j = n - 1; j >= 0; --j)
+            if(i - j <= m && i - j >= 1){
+                int a1 = a[j] - '0';
+                int b1 = b[i - j - 1] - '0';
+                res += a1 * b1;
+            }
+            res += nho;
+            nho = res / 10;
+            ans = (char)(res % 10 + '0') + ans;
+    }
+    while(sz(ans) > 1 && ans[0] == '0') ans.erase(0, 1);
+    return ans;
+}
+
 int main(){
     FileIO();
     FastIO;
     TC(){
         string a, b; cin >> a >> b;
-        while (sz(a) < sz(b)) a = "0" + a;
-        while (sz(b) < sz(a)) b = "0" + b;
-        if (a < b) swap(a, b);
-        int n = sz(a), nho = 0;
         string ans = "";
-        for (int i = n - 1; i >= 0; --i){
-            int res = (a[i] - '0') + (b[i] - '0') + nho;
-            nho = res / 10;
-            res %= 10;
-            ans = char(res + '0') + ans;
+        if ((a[0] == '-' && b[0] != '-') || (a[0] != '-' && b[0] == '-')){
+            if (a[0] == '-') a.erase(0, 1);
+            if (b[0] == '-') b.erase(0, 1);
+            ans = multiply(a, b);
+            ans = "-" + ans;
+        }else{
+            if (a[0] == '-') a.erase(0, 1);
+            if (b[0] == '-') b.erase(0, 1);
+            ans = multiply(a, b);
         }
-        if (nho > 0) ans = "1" + ans;
         cout << ans; el;
     }
     return 0;

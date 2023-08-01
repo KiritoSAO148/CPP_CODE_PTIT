@@ -39,14 +39,22 @@ int main(){
     FileIO();
     FastIO;
     TC(){
-        string s; cin >> s;
-        int r = 0;
-        f0 (i, sz(s)){
-            r = 2 * r + s[i] - '0';
-            r %= 5;
+        int n; cin >> n;
+        vi a(n);
+        f0 (i, n) cin >> a[i];
+        int k, x; cin >> k >> x;
+        int l = 0, r = 0;
+        int it = lower_bound(all(a), x) - begin(a);
+        if (a[it] == x){
+            l = it - 1;
+            r = it + 1;
+        }else{
+            r = it;
+            l = it - 1;
         }
-        if (r == 0) cout << "Yes\n";
-        else cout << "No\n";
+        for (int i = k / 2 - 1; i >= 0; --i) cout << a[l - i] << ' ';
+        for (int i = 0; i < k / 2; ++i) cout << a[r + i] << ' ';
+        el;
     }
     return 0;
 }
