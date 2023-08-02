@@ -1,43 +1,73 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int cnt=0;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef vector<pii> vii;
+typedef vector<pll> vll;
+typedef vector<ll> vl;
+typedef vector<vl> vvl;
+
+#define ms(s,n) memset(s,n,sizeof(s))
+#define all(a) a.begin(),a.end()
+#define sz(a) int((a).size())
+#define f0(i,n) for (int i=0; i<n; i++)
+#define f1(i,n) for (int i=1; i<=n; i++)
+#define FastIO ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define TC() int t; cin >> t; while (t--)
+#define el cout << "\n"
+#define pb push_back
+#define pf push_front
+#define fi first
+#define se second
+#define maxn 
+
+const int MOD = (int) 1e9+7;
+
+void FileIO(){
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+}
+
+int cnt = 0;
+
 struct NhanVien{
-	string ma,ten,gt,ns,dc,mst,hd;
+    string mnv, ten, gt, ns, dc, mst, hd;
 };
 
-void nhap (NhanVien &a){
-	++cnt;
-	string s=to_string(cnt);
-	while (s.size()<5){
-		s="0"+s;
-	}
-	a.ma=s;
-	cin.ignore();
-	getline(cin,a.ten);
-	cin >> a.gt >> a.ns; 
-	cin.ignore();
-	getline(cin,a.dc);
-	cin >> a.mst >> a.hd;
+void nhap(NhanVien &x){
+    cin.ignore();
+    ++cnt;
+    x.mnv = to_string(cnt);
+    while (sz(x.mnv) < 5) x.mnv = "0" + x.mnv;
+    getline(cin, x.ten);
+    getline(cin, x.gt);
+    getline(cin, x.ns);
+    getline(cin, x.dc);
+    cin >> x.mst >> x.hd;
 }
 
-void inds (NhanVien a[],int n){
-	for (int i=0; i<n; i++){
-		cout << a[i].ma << " " << a[i].ten << " " << a[i].gt << " " << a[i].ns << " " << a[i].dc << " " << a[i].mst << " " << a[i].hd << endl;
-	}
+bool cmp(NhanVien a, NhanVien b){
+    string date1 = a.ns, date2 = b.ns;
+    int day1 = stoi(date1.substr(3, 5)), month1 = stoi(date1.substr(0, 2)), year1 = stoi(date1.substr(6));
+    int day2 = stoi(date2.substr(3, 5)), month2 = stoi(date2.substr(0, 2)), year2 = stoi(date2.substr(6));
+    if (year1 != year2) return year1 < year2;
+    if (month1 != month2) return month1 < month2;
+    return day1 < day2;
 }
 
-bool cmp (NhanVien a,NhanVien b){
-	string s1=a.ns,s2=b.ns;
-	int ng1=(s1[3]-'0')*10+s1[4]-'0';int t1=(s1[0]-'0')*10+s1[1]-'0';int n1=stoi(s1.substr(6));
-	int ng2=(s2[3]-'0')*10+s2[4]-'0';int t2=(s2[0]-'0')*10+s2[1]-'0';int n2=stoi(s2.substr(6));
-	if (n1!=n2) return n1<n2;
-	if (t1!=t2) return t1<t2;
-	return ng1<ng2;
+void sapxep(NhanVien a[], int n){
+    sort(a, a + n, cmp);
 }
 
-void sapxep (NhanVien a[],int n){
-	sort(a,a+n,cmp);
+void inds(NhanVien a[], int n){
+    f0 (i, n) cout << a[i].mnv << ' ' << a[i].ten << ' ' << a[i].gt << ' ' << a[i].ns << ' ' << a[i].dc << ' ' << a[i].mst << ' ' << a[i].hd << '\n';
 }
 
 int main(){

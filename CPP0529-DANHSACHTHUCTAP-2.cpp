@@ -35,42 +35,41 @@ void FileIO(){
     #endif
 }
 
-struct PhanSo{
-    ll tu, mau;
+struct SinhVien{
+    int tt;
+    string msv, ten, lop, email, doanhnghiep;
 };
 
-ll gcd (ll a, ll b){
-    if (b==0) return a;
-    return gcd(b,a%b);
+bool cmp(SinhVien a, SinhVien b){
+    return a.msv < b.msv;
 }
 
-ll lcm (ll a, ll b){
-    return a/gcd(a,b)*b;
-}
-
-void nhap(PhanSo &x){
-    cin >> x.tu >> x.mau;
-}
-
-PhanSo tong(PhanSo a, PhanSo b){
-    ll l = lcm(a.mau, b.mau);
-    PhanSo res;
-    res.tu = (l / a.mau * a.tu) + (l / b.mau * b.tu);
-    res.mau = l;
-    ll g = gcd(res.tu, res.mau);
-    res.tu /= g;
-    res.mau /= g;
-    return res;
-}
-
-void in(PhanSo x){
-    cout << x.tu << '/' << x.mau;
-}
-
-int main() {
-    struct PhanSo p,q;
-    nhap(p); nhap(q);
-    PhanSo t = tong(p,q);
-    in(t);
+int main(){
+    FileIO();
+    FastIO;
+    int n; cin >> n;
+    SinhVien a[n];
+    cin.ignore();
+    f0 (i, n){
+        a[i].tt = i + 1;
+        getline(cin, a[i].msv);
+        getline(cin, a[i].ten);
+        getline(cin, a[i].lop);
+        getline(cin, a[i].email);
+        getline(cin, a[i].doanhnghiep);
+    }
+    int q; cin >> q;
+    cin.ignore();
+    while (q--){
+        string dn; getline(cin, dn);
+        vector <SinhVien> v;
+        f0 (i, n){
+            if (a[i].doanhnghiep == dn) v.pb(a[i]);
+        }
+        sort(all(v), cmp);
+        f0 (i, sz(v)) cout << v[i].tt << ' ' << v[i].msv << ' ' << v[i].ten << ' ' <<
+        v[i].lop << ' ' << v[i].email << ' ' << v[i].doanhnghiep << '\n';
+        v.clear();
+    }
     return 0;
 }

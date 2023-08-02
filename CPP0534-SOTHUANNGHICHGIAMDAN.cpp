@@ -1,25 +1,67 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool check (string s){
-	if (s.size()<2) return false;
-	string t=s;
-	reverse (s.begin(),s.end());
-	return t==s;
+typedef long long ll;
+typedef unsigned long long ull;
+typedef pair<int,int> pii;
+typedef pair<ll,ll> pll;
+typedef vector<int> vi;
+typedef vector<vi> vvi;
+typedef vector<pii> vii;
+typedef vector<pll> vll;
+typedef vector<ll> vl;
+typedef vector<vl> vvl;
+
+#define ms(s,n) memset(s,n,sizeof(s))
+#define all(a) a.begin(),a.end()
+#define sz(a) int((a).size())
+#define f0(i,n) for (int i=0; i<n; i++)
+#define f1(i,n) for (int i=1; i<=n; i++)
+#define FastIO ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define TC() int t; cin >> t; while (t--)
+#define el cout << "\n"
+#define pb push_back
+#define pf push_front
+#define fi first
+#define se second
+#define maxn 
+
+const int MOD = (int) 1e9+7;
+
+void FileIO(){
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
 }
 
-bool cmp (string a,string b){
-	return (a.size() != b.size() ? a.size() > b.size() : a>b);
+bool palind(string s){
+    string t = s;
+    reverse(all(t));
+    return sz(s) > 1 && s == t;
+}
+
+bool cmp(string a, string b){
+    if (sz(a) != sz(b)) return sz(a) > sz(b);
+    return a > b;
 }
 
 int main(){
-	int j=0;
-	while (cin){
-		cin >> x;
-		if (check(x)){
-			if (a[j]==x) j++;
-		}
-	}
-	sort ()
-	return 0;
+    FileIO();
+    FastIO;
+    string s;
+    vector <string> v;
+    while (cin >> s){
+        if (palind(s)) v.pb(s);
+    }
+    map <string, int> mp;
+    f0 (i, sz(v)) mp[v[i]]++;
+    sort(all(v), cmp);
+    f0 (i, sz(v)){
+        if (mp[v[i]]){
+            cout << v[i] << ' ' << mp[v[i]] << '\n';
+            mp[v[i]] = 0;
+        }
+    }
+    return 0;
 }
